@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "dev.dsddr.aeronauticsaddon.mixin",
+  "refmap": "${mod_id}.refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "AeronauticsCommonEventsMixin",
+    "honeyglue.HoneyGlueMaxSizingMixin",
+    "honeyglue.SimAssemblyContraptionMixin"
+  ],
+  "client": [
+    "client.HoneyGlueClientHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

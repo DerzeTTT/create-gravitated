@@ -1,0 +1,53 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+
+base {
+    archivesName = "create-gravitated-${project.name}-${minecraft_version}"
+}
+
+evaluationDependsOn(':aeronautics:neoforge')
+evaluationDependsOn(':simulated:neoforge')
+
+neoForge {
+    version = neoforge_version
+
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "Aeronautics Addon NeoForge ${it.name.capitalize()} (${project.path})"
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+        aeronautics {
+            sourceSet project(':aeronautics:neoforge').sourceSets.main
+        }
+        simulated {
+            sourceSet project(':simulated:neoforge').sourceSets.main
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                'Specification-Title'   : mod_name,
+                'Specification-Vendor'  : mod_author,
+                'Specification-Version' : project.jar.archiveVersion,
+                'Implementation-Title'  : mod_name,
+                'Implementation-Version': project.jar.archiveVersion,
+                'Implementation-Vendor' : mod_author,
+                'Built-On-Minecraft'    : minecraft_version
+        ])
+    }
+}
