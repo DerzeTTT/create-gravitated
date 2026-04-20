@@ -36,7 +36,21 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
+modId = "sable"
+type = "required"
+versionRange = "[${sable_mod_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
 modId = "simulated"
+type = "required"
+versionRange = "[1.0.3,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "aeronautics"
 type = "required"
 versionRange = "[1.0.3,)"
 ordering = "AFTER"

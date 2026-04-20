@@ -1,7 +1,15 @@
 # Changelog
 
-## 1.0.3-gravitated.2
+## 1.0.3-gravitated.3
 
-- Reduced the addon to Honey Glue range configuration only
-- Added `/creategravitated honey_glue_range` commands for viewing and changing the range
-- Changed the default Honey Glue range provided by the addon to 64 blocks
+- Restored the Gravitite and Stabilite feature set as the main addon focus
+- Kept the Honey Glue range helper as a smaller configurable side feature
+- Refreshed the project presentation around the block-focused release
+
+## 1.0.3-gravitated.1
+
+- Added `Gravitite`, a contraption-wide gravity cancel block for Create Aeronautics
+- Added `Stabilite`, a redstone-scaled horizon stabilizer for ships
+- Added steering wheel yaw control when mounted above Stabilite
+- Increased Honey Glue maximum size to 512 blocks
+- Added custom textures, particles, tooltip colors, and addon branding assets

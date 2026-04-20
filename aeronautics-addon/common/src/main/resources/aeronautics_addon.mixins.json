@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "mixins": [
+    "AeronauticsCommonEventsMixin",
     "honeyglue.HoneyGlueMaxSizingMixin",
     "honeyglue.SimAssemblyContraptionMixin"
   ],

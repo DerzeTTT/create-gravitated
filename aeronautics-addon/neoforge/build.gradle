@@ -7,6 +7,7 @@ base {
     archivesName = "create-gravitated-${project.name}-${minecraft_version}"
 }
 
+evaluationDependsOn(':aeronautics:neoforge')
 evaluationDependsOn(':simulated:neoforge')
 
 neoForge {
@@ -27,6 +28,9 @@ neoForge {
     mods {
         "${mod_id}" {
             sourceSet sourceSets.main
+        }
+        aeronautics {
+            sourceSet project(':aeronautics:neoforge').sourceSets.main
         }
         simulated {
             sourceSet project(':simulated:neoforge').sourceSets.main
