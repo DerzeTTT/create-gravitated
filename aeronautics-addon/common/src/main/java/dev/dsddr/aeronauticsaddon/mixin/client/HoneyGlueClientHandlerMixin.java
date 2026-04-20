@@ -14,6 +14,6 @@ public abstract class HoneyGlueClientHandlerMixin {
             index = 0
     )
     private static double aeronauticsAddon$increaseClientSearchRange(final double original) {
-        return AddonHoneyGlueRange.ensureMinimum(original);
+        return AddonHoneyGlueRange.getRangeAsDouble();
     }
 }

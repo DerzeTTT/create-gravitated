@@ -13,11 +13,6 @@ neoForge {
 }
 
 dependencies {
-    api(project(":aeronautics:common")) {
-        capabilities {
-            requireCapability "dev.eriksonn.aeronautics:aeronautics"
-        }
-    }
     api(project(":simulated:common")) {
         capabilities {
             requireCapability "dev.simulated_team.simulated:simulated"

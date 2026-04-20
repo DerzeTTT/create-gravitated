@@ -2,33 +2,24 @@
 
 ![Create: Gravitated icon](./aeronautics-addon/neoforge/src/main/resources/create_gravitated.png)
 
-Create: Gravitated is a NeoForge addon for Create Aeronautics that adds control blocks for easier ship building.
+Adds a command to configure honey glue range and changes default range to 64 blocks.
 
-It is aimed at the "I want my contraption to behave" part of the experience:
+## Command
 
-- `Gravitite` cancels gravity for the contraption it is attached to.
-- `Stabilite` levels a contraption toward the horizon without freezing normal motion.
-- A steering wheel placed on top of Stabilite can drive ship yaw directly.
-- Honey Glue range is extended to 512 blocks for large builds.
+Use the server command below:
 
-## Features
+```text
+/creategravitated honey_glue_range
+/creategravitated honey_glue_range get
+/creategravitated honey_glue_range set <blocks>
+/creategravitated honey_glue_range reset
+```
 
-### Gravitite
+The configured value is stored in:
 
-- Zero-gravity support for Create Aeronautics contraptions
-- Redstone-controlled strength
-- White shimmer particles, ambient hum, and animated blue visuals
-
-### Stabilite
-
-- Horizon stabilization with redstone-scaled rigidity
-- Purple visuals and particles
-- Helm yaw input when a steering wheel is mounted above the block
-
-### Building tweaks
-
-- Extended Honey Glue sizing for large ships
-- Tooltip styling and polished presentation assets for the new blocks
+```text
+config/create-gravitated.properties
+```
 
 ## Requirements
 
@@ -57,11 +48,11 @@ aeronautics-addon/neoforge/build/libs/
 
 Current release line:
 
-- `1.0.3-gravitated.1`
+- `1.0.3-gravitated.2`
 
 Primary jar name:
 
-- `create-gravitated-neoforge-1.21.1-1.0.3-gravitated.1.jar`
+- `create-gravitated-neoforge-1.21.1-1.0.3-gravitated.2.jar`
 
 ## License
 

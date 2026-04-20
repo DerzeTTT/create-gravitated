@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class HoneyGlueMaxSizingMixin {
     @Inject(method = "checkBBMax", at = @At("HEAD"), cancellable = true)
     private static void aeronauticsAddon$checkBBMax(final AABB bb, final CallbackInfoReturnable<Boolean> cir) {
-        final int max = AddonHoneyGlueRange.getConfiguredMinimum();
+        final int max = AddonHoneyGlueRange.getRange();
         cir.setReturnValue(bb.getXsize() > max || bb.getYsize() > max || bb.getZsize() > max);
     }
 }

@@ -14,7 +14,7 @@ public abstract class SimAssemblyContraptionMixin {
             index = 0
     )
     private double aeronauticsAddon$increaseCheckAndCacheRange(final double original) {
-        return AddonHoneyGlueRange.ensureMinimum(original);
+        return AddonHoneyGlueRange.getRangeAsDouble();
     }
 
     @ModifyArg(
@@ -23,6 +23,6 @@ public abstract class SimAssemblyContraptionMixin {
             index = 0
     )
     private static double aeronauticsAddon$increaseInitialRange(final double original) {
-        return AddonHoneyGlueRange.ensureMinimum(original);
+        return AddonHoneyGlueRange.getRangeAsDouble();
     }
 }
