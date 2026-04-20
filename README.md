@@ -9,6 +9,7 @@ It is aimed at the "I want my contraption to behave" part of the experience:
 - `Gravitite` cancels gravity for the contraption it is attached to.
 - `Stabilite` levels a contraption toward the horizon without freezing normal motion.
 - A steering wheel placed on top of Stabilite can drive ship yaw directly.
+- In-game Ponder scenes explain Gravitite, Stabilite, steering wheel yaw, and redstone control.
 - Side tip: Honey Glue range can be configured with `/creategravitated honey_glue_range`.
 
 ## Features
@@ -28,6 +29,7 @@ It is aimed at the "I want my contraption to behave" part of the experience:
 ### Building tweaks
 
 - Configurable Honey Glue range with `/creategravitated honey_glue_range`
+- New Ponder tutorials for both addon control blocks
 - Tooltip styling and polished presentation assets for the new blocks
 
 ## Requirements
@@ -57,11 +59,11 @@ aeronautics-addon/neoforge/build/libs/
 
 Current release line:
 
-- `1.0.3-gravitated.3`
+- `1.0.3-gravitated.4`
 
 Primary jar name:
 
-- `create-gravitated-neoforge-1.21.1-1.0.3-gravitated.3.jar`
+- `create-gravitated-neoforge-1.21.1-1.0.3-gravitated.4.jar`
 
 ## License
 

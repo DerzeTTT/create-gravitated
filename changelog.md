@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3-gravitated.4
+
+- Added Ponder tutorials for Gravitite and Stabilite
+- Covered Stabilite steering wheel yaw control directly in-game
+- Documented redstone signal behavior for both addon blocks inside Ponder
+
 ## 1.0.3-gravitated.3
 
 - Restored the Gravitite and Stabilite feature set as the main addon focus
