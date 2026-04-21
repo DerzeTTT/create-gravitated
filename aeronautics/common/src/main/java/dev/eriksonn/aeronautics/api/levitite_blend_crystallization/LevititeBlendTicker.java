@@ -80,7 +80,7 @@ public class LevititeBlendTicker {
 	private boolean checkSurroundingCatalyst() {
 		if (this.requiresCatalyst) {
 			for (final Direction dir : Direction.values()) {
-				final CrystalPropagationContext ctx = LevititeBlendHelper.getContextFromBlock(this.level, this.pos.relative(dir));
+				final CrystalPropagationContext ctx = LevititeBlendHelper.getContextFromBlock(this.level, this.pos, this.pos.relative(dir));
 				if (ctx != this.context) {
 					continue;
 				}

@@ -6,15 +6,20 @@ import dev.eriksonn.aeronautics.index.AeroAdvancements;
 import dev.eriksonn.aeronautics.index.AeroBlocks;
 import dev.eriksonn.aeronautics.index.AeroSoundEvents;
 import dev.eriksonn.aeronautics.index.AeroTags;
+import com.simibubi.create.content.processing.burner.LitBlazeBurnerBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
+
+import java.util.Optional;
 
 public class LevititeSoulCrystalPropagationContext implements CrystalPropagationContext {
 
@@ -54,6 +59,25 @@ public class LevititeSoulCrystalPropagationContext implements CrystalPropagation
     @Override
     public CrystalPropagationContext getContextForSpread(final Level level, final BlockPos pos) {
         return LevititeCrystalPropagationContext.getRandomContext(this, level, pos);
+    }
+
+    @Override
+    public boolean matchesCatalystBlock(final Level level, final BlockPos fluidPos, final BlockPos catalystPos, final BlockState catalystState) {
+        if (catalystState.getBlock() instanceof LitBlazeBurnerBlock) {
+            return catalystState.getValue(LitBlazeBurnerBlock.FLAME_TYPE) != LitBlazeBurnerBlock.FlameType.REGULAR;
+        }
+
+        final Optional<Boolean> litState = catalystState.getOptionalValue(BlockStateProperties.LIT);
+        if (litState.isPresent() && !litState.get()) {
+            return false;
+        }
+
+        return catalystState.is(this.getCatalyzerTag());
+    }
+
+    @Override
+    public boolean matchesCatalystItem(final Level level, final BlockPos fluidPos, final ItemStack catalystItem) {
+        return catalystItem.is(AeroTags.ItemTags.LEVITITE_SOUL_CATALYZER);
     }
 
     @Override

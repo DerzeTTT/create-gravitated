@@ -5,7 +5,7 @@ import net.createmod.catnip.config.ConfigBase;
 public class SimAssembly extends ConfigBase {
 
     public final ConfigInt maxBlocksMoved = this.i(128_000, 1, "maxBlocksMoved", Comments.maxBlocksMoved);
-    public final ConfigInt honeyGlueRange = this.i(48, 1, Integer.MAX_VALUE,"honeyGlueRange",Comments.honeyGlueRange);
+    public final ConfigInt honeyGlueRange = this.i(512, 1, Integer.MAX_VALUE,"honeyGlueRange",Comments.honeyGlueRange);
     public final ConfigFloat mergingGlueRange = this.f(4.0f, 0.0f, Float.MAX_VALUE,"mergingGlueRange",Comments.mergingGlueRange);
     public final ConfigInt maxDisassemblyTicks = this.i(20, 5, "maxDisassemblyTicks", Comments.maxDisassemblyTicks);
     public final ConfigFloat disassemblyDegreeTolerance = this.f(4, 0, "disassemblyDegreeTolerance", Comments.disassemblyDegreeTolerance);

@@ -3,7 +3,6 @@ package dev.eriksonn.aeronautics.network.packets;
 import dev.eriksonn.aeronautics.Aeronautics;
 import dev.eriksonn.aeronautics.api.levitite_blend_crystallization.CrystalPropagationContext;
 import dev.eriksonn.aeronautics.api.levitite_blend_crystallization.LevititeBlendHelper;
-import dev.eriksonn.aeronautics.index.AeroLevititeBlendPropagationContexts;
 import dev.eriksonn.aeronautics.index.AeroTags;
 import foundry.veil.api.network.handler.ServerPacketContext;
 import net.createmod.catnip.codecs.stream.CatnipStreamCodecs;
@@ -32,6 +31,10 @@ public record LevititeCatalystCrystallizationPacket(BlockPos pos, InteractionHan
 
 	public void handle(final ServerPacketContext context) {
 		final ServerPlayer player = context.player();
+		final CrystalPropagationContext itemContext = LevititeBlendHelper.getContextFromItem(context.level(), this.pos, this.item);
+		if (itemContext == null) {
+			return;
+		}
 
 		if (!this.item.is(AeroTags.ItemTags.LEVITITE_CATALYZER_NO_CONSUME)) {
 			if (this.item.isDamageableItem()) {
@@ -42,10 +45,6 @@ public record LevititeCatalystCrystallizationPacket(BlockPos pos, InteractionHan
 		}
 		player.swing(this.hand);
 		context.player().setItemInHand(this.hand, this.item);
-		final CrystalPropagationContext itemContext = this.item.is(AeroTags.ItemTags.LEVITITE_SOUL_CATALYZER) ?
-				AeroLevititeBlendPropagationContexts.SOUL_CONTEXT.get() :
-				AeroLevititeBlendPropagationContexts.STANDARD_CONTEXT.get();
-		//LevititeBlendHelper.crystallizeLevititeBlend(context.level(), this.pos, itemContext.getContextForSpread(context.level(), this.pos));
 		LevititeBlendHelper.addLevititeBlendTicker(context.level(), this.pos, false, false, itemContext.getContextForSpread(context.level(), this.pos));
 	}
 }

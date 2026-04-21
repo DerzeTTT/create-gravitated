@@ -359,7 +359,7 @@ public class HoneyGlueClientHandler implements InteractCallback {
     }
 
     private static @NotNull List<HoneyGlueEntity> getHoneyGlue(final Player player) {
-        return player.level().getEntities(SimEntityTypes.HONEY_GLUE.get(), player.getBoundingBox().inflate(SimConfigService.INSTANCE.server().assembly.honeyGlueRange.get()), e -> true);
+        return player.level().getEntities(SimEntityTypes.HONEY_GLUE.get(), player.getBoundingBox().inflate(HoneyGlueMaxSizing.getMaxRange()), e -> true);
     }
 
     @Nullable

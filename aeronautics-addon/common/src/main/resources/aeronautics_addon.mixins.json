@@ -7,10 +7,12 @@
   "mixins": [
     "AeronauticsCommonEventsMixin",
     "honeyglue.HoneyGlueMaxSizingMixin",
-    "honeyglue.SimAssemblyContraptionMixin"
+    "honeyglue.SimAssemblyContraptionMixin",
+    "stabilite.StabiliteSteeringWheelBlockEntityMixin"
   ],
   "client": [
-    "client.HoneyGlueClientHandlerMixin"
+    "client.HoneyGlueClientHandlerMixin",
+    "client.StabiliteSteeringWheelBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -9,6 +9,8 @@ import static com.simibubi.create.foundation.block.connected.AllCTTypes.OMNIDIRE
 public class AeroSpriteShift {
 	public static final CTSpriteShiftEntry LEVITITE = omni("block/levitite");
 	public static final CTSpriteShiftEntry PEARLESCENT_LEVITITE = omni("block/pearlescent_levitite");
+	public static final CTSpriteShiftEntry GRAVITITE = omni("block/gravitite");
+	public static final CTSpriteShiftEntry STABILITE = omni("block/stabilite");
 
 	static CTSpriteShiftEntry omni(String name) {
 		return CTSpriteShifter.getCT(OMNIDIRECTIONAL,

@@ -22,6 +22,10 @@ public class BlockMixin {
         final boolean l1 = blockstate1.is(AeroTags.BlockTags.LEVITITE);
         final boolean l2 = blockstate2.is(AeroTags.BlockTags.LEVITITE);
 
+        if (l1 && l2) {
+            return blockstate1.getBlock() != blockstate2.getBlock();
+        }
+
         return l1 ^ l2;
     }
 }

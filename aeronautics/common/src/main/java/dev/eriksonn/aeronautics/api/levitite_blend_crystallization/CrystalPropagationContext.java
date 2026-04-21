@@ -6,6 +6,7 @@ import dev.eriksonn.aeronautics.index.AeroTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -72,6 +73,19 @@ public interface CrystalPropagationContext {
     default boolean shouldCrystallize(final Level level, final int attempts, final boolean isDormant) {
         final float maxAttempts = isDormant ? 10 : 5;
         return level.random.nextFloat() < attempts / maxAttempts;
+    }
+
+    default int getPriority() {
+        return 0;
+    }
+
+    default boolean matchesCatalystBlock(final Level level, final BlockPos fluidPos, final BlockPos catalystPos,
+                                         final BlockState catalystState) {
+        return catalystState.is(this.getCatalyzerTag());
+    }
+
+    default boolean matchesCatalystItem(final Level level, final BlockPos fluidPos, final ItemStack catalystItem) {
+        return false;
     }
 
     boolean canSpreadTo(FluidState state);

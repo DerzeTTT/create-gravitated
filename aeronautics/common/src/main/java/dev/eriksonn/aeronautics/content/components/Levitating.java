@@ -9,6 +9,8 @@ import net.minecraft.core.particles.ParticleTypes;
 import java.util.Optional;
 
 public record Levitating(Float dragFraction, Optional<ParticleOptions> particle) {
+	private static final int GRAVITITE_WHITE = 16777215;
+
 	public static final Codec<Levitating> CODEC = RecordCodecBuilder.create(
 			i -> i.group(
 							Codec.FLOAT.optionalFieldOf("drag_fraction", 0.93f).forGetter(Levitating::dragFraction),
@@ -20,5 +22,9 @@ public record Levitating(Float dragFraction, Optional<ParticleOptions> particle)
 	public static final Levitating LEVITITE = new Levitating(0.93f,
 			Optional.of(new LevititeSparklePartcleData(LevititeSparklePartcleData.LEVITITE_GREEN)));
 	public static final Levitating PEARLESCENT_LEVITITE = new Levitating(0.93f,
+			Optional.of(new LevititeSparklePartcleData(LevititeSparklePartcleData.LEVITITE_PINK)));
+	public static final Levitating GRAVITITE = new Levitating(0.93f,
+			Optional.of(new LevititeSparklePartcleData(GRAVITITE_WHITE)));
+	public static final Levitating STABILITE = new Levitating(0.93f,
 			Optional.of(new LevititeSparklePartcleData(LevititeSparklePartcleData.LEVITITE_PINK)));
 }

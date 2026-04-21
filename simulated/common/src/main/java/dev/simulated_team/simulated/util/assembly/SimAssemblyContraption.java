@@ -18,6 +18,7 @@ import com.simibubi.create.content.kinetics.gantry.GantryShaftBlock;
 import com.simibubi.create.content.trains.bogey.AbstractBogeyBlock;
 import dev.simulated_team.simulated.content.blocks.swivel_bearing.SwivelBearingBlock;
 import dev.simulated_team.simulated.content.entities.honey_glue.HoneyGlueEntity;
+import dev.simulated_team.simulated.content.entities.honey_glue.HoneyGlueMaxSizing;
 import dev.simulated_team.simulated.index.SimBlockMovementChecks;
 import dev.simulated_team.simulated.index.SimBlocks;
 import dev.simulated_team.simulated.index.SimTags;
@@ -76,7 +77,7 @@ public class SimAssemblyContraption {
         }
 
         if (containedByAnyHoneyGlue) {
-            final int honeyGlueRange = SimConfigService.INSTANCE.server().assembly.honeyGlueRange.get();
+            final int honeyGlueRange = HoneyGlueMaxSizing.getMaxRange();
             for (final HoneyGlueEntity honeyGlueEntity : level.getEntitiesOfClass(HoneyGlueEntity.class,
                     SuperGlueEntity.span(blockPos, targetPos).inflate(honeyGlueRange))) {
                 if (this.anchor != null && this.ignoreEnclosingGlue && honeyGlueEntity.contains(this.anchor)) {
@@ -131,7 +132,7 @@ public class SimAssemblyContraption {
     }
 
     protected static void addInitialHoneyGlue(final Level level, final SimAssemblyContraption contraption, final BlockPos anchor, final BlockPos pos, final boolean ignoreEnclosingGlue) {
-        final int honeyGlueRange = SimConfigService.INSTANCE.server().assembly.honeyGlueRange.get();
+        final int honeyGlueRange = HoneyGlueMaxSizing.getMaxRange();
         for (final HoneyGlueEntity honeyGlueEntity : level.getEntitiesOfClass(HoneyGlueEntity.class,
                 SuperGlueEntity.span(pos, pos).inflate(honeyGlueRange))) {
 

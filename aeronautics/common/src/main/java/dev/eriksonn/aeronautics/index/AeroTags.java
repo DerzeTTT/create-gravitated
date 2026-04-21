@@ -28,6 +28,7 @@ public class AeroTags {
 		public static final TagKey<Block> AIRTIGHT = create("airtight");
 		public static final TagKey<Block> ENVELOPE = create("envelope");
 		public static final TagKey<Block> LEVITITE = create("levitite");
+		public static final TagKey<Block> FLOATING_LEVITITE = create("floating_levitite");
 		public static final TagKey<Block> LEVITITE_BREAKABLE = create("levitite_breakable");
 		public static final TagKey<Block> LEVITITE_CATALYZER = create("levitite_catalyzer");
 		public static final TagKey<Block> LEVITITE_SOUL_CATALYZER = create("levitite_soul_catalyzer"); // blocks that start soul crystallization
@@ -45,6 +46,9 @@ public class AeroTags {
 
 			prov.tag(DAMPENS_VIBRATIONS)
 							.addTag(ENVELOPE);
+
+			prov.tag(FLOATING_LEVITITE)
+					.add(AeroBlocks.LEVITITE.get(), AeroBlocks.PEARLESCENT_LEVITITE.get());
 
 			prov.tag(LEVITITE_BREAKABLE)
 					.add(Blocks.CLAY,Blocks.MUD,Blocks.PACKED_MUD,Blocks.COARSE_DIRT);

@@ -1,6 +1,8 @@
 {
   "values": [
     "aeronautics:levitite",
-    "aeronautics:pearlescent_levitite"
+    "aeronautics:pearlescent_levitite",
+    "aeronautics:gravitite",
+    "aeronautics:stabilite"
   ]
 }

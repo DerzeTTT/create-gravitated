@@ -41,9 +41,9 @@ public class AddonStabiliteManager {
     private static final double MAX_STABILIZATION_DAMPING = 84.0;
     private static final double MIN_MAX_TORQUE_IMPULSE = 0.35;
     private static final double MAX_MAX_TORQUE_IMPULSE = 420.0;
-    private static final double YAW_RATE_GAIN = 8.0;
-    private static final double MAX_YAW_TORQUE_IMPULSE = 40.0;
-    private static final double MAX_TARGET_YAW_RATE = Math.toRadians(45.0);
+    private static final double YAW_RATE_GAIN = 16.0;
+    private static final double MAX_YAW_TORQUE_IMPULSE = 80.0;
+    private static final double MAX_TARGET_YAW_RATE = Math.toRadians(90.0);
     private static final Map<ServerLevel, AddonStabiliteManager> MANAGERS = new WeakHashMap<>();
 
     private final ServerLevel level;
@@ -217,14 +217,13 @@ public class AddonStabiliteManager {
                 continue;
             }
 
-            final BlockState wheelState = steeringWheel.getBlockState();
-            if (!wheelState.hasProperty(SteeringWheelBlock.ON_FLOOR)
-                    || !wheelState.getValue(SteeringWheelBlock.ON_FLOOR)
-                    || steeringWheel.angleInput == null) {
+            if (steeringWheel.angleInput == null || !AddonStabiliteWheelHelper.isStabiliteMounted(this.level, steeringWheel.getBlockPos())) {
                 continue;
             }
 
-            final double maxAngle = Math.max(1, steeringWheel.angleInput.getValue());
+            AddonStabiliteWheelHelper.lockWheelSettings(steeringWheel);
+
+            final double maxAngle = AddonStabiliteWheelHelper.MAX_STEERING_ANGLE;
             final double steeringInput = Mth.clamp(-steeringWheel.directionConvert(steeringWheel.targetAngleToUpdate) / maxAngle, -1.0F, 1.0F);
             steeringSum += steeringInput;
             steeringWheelCount++;

@@ -27,6 +27,8 @@ import dev.eriksonn.aeronautics.content.blocks.hot_air.envelope.EnvelopeBlock;
 import dev.eriksonn.aeronautics.content.blocks.hot_air.envelope.EnvelopeEncasedShaftBlock;
 import dev.eriksonn.aeronautics.content.blocks.hot_air.hot_air_burner.HotAirBurnerBlock;
 import dev.eriksonn.aeronautics.content.blocks.hot_air.steam_vent.SteamVentBlock;
+import dev.eriksonn.aeronautics.content.blocks.levitite.GravititeBlock;
+import dev.eriksonn.aeronautics.content.blocks.levitite.StabiliteBlock;
 import dev.eriksonn.aeronautics.content.blocks.mounted_potato_cannon.MountedPotatoCannonBlock;
 import dev.eriksonn.aeronautics.content.blocks.propeller.bearing.gyroscopic_propeller_bearing.GyroscopicPropellerBearingBlock;
 import dev.eriksonn.aeronautics.content.blocks.propeller.bearing.propeller_bearing.PropellerBearingBlock;
@@ -391,6 +393,46 @@ public class AeroBlocks {
                     .item(BlockItem::new)
                     .tag(AeroTags.ItemTags.LEVITITE)
                     .properties(p -> p.component(AeroDataComponents.LEVITATING, Levitating.PEARLESCENT_LEVITITE))
+                    .build()
+                    .register();
+
+    public static final BlockEntry<GravititeBlock> GRAVITITE =
+            REGISTRATE.block("gravitite", GravititeBlock::new)
+                    .properties(p -> p.lightLevel($ -> 10))
+                    .properties(BlockBehaviour.Properties::noLootTable)
+                    .properties(p -> p.strength(7, 20))
+                    .properties(p -> p.sound(new SimLazySoundType(1.0f, 1.0f,
+                            AeroSoundEvents.LEVITITE_BREAK::event,
+                            () -> SoundEvents.AMETHYST_BLOCK_STEP,
+                            AeroSoundEvents.LEVITITE_PLACE::event,
+                            () -> SoundEvents.AMETHYST_BLOCK_HIT,
+                            () -> SoundEvents.AMETHYST_BLOCK_FALL)))
+                    .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, AeroTags.BlockTags.LEVITITE)
+                    .onRegister(connectedTextures(() -> new SimpleCTBehaviour(AeroSpriteShift.GRAVITITE)))
+                    .tag(SableTags.ALWAYS_CHUNK_RENDERING)
+                    .item(BlockItem::new)
+                    .tag(AeroTags.ItemTags.LEVITITE)
+                    .properties(p -> p.component(AeroDataComponents.LEVITATING, Levitating.GRAVITITE))
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StabiliteBlock> STABILITE =
+            REGISTRATE.block("stabilite", StabiliteBlock::new)
+                    .properties(p -> p.lightLevel($ -> 10))
+                    .properties(BlockBehaviour.Properties::noLootTable)
+                    .properties(p -> p.strength(7, 20))
+                    .properties(p -> p.sound(new SimLazySoundType(1.0f, 1.0f,
+                            AeroSoundEvents.LEVITITE_BREAK::event,
+                            () -> SoundEvents.AMETHYST_BLOCK_STEP,
+                            AeroSoundEvents.LEVITITE_PLACE::event,
+                            () -> SoundEvents.AMETHYST_BLOCK_HIT,
+                            () -> SoundEvents.AMETHYST_BLOCK_FALL)))
+                    .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, AeroTags.BlockTags.LEVITITE)
+                    .onRegister(connectedTextures(() -> new SimpleCTBehaviour(AeroSpriteShift.STABILITE)))
+                    .tag(SableTags.ALWAYS_CHUNK_RENDERING)
+                    .item(BlockItem::new)
+                    .tag(AeroTags.ItemTags.LEVITITE)
+                    .properties(p -> p.component(AeroDataComponents.LEVITATING, Levitating.STABILITE))
                     .build()
                     .register();
 

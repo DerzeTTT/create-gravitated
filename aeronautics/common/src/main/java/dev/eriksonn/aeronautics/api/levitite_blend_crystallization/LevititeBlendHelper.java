@@ -1,7 +1,5 @@
 package dev.eriksonn.aeronautics.api.levitite_blend_crystallization;
 
-import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
-import com.simibubi.create.content.processing.burner.LitBlazeBurnerBlock;
 import dev.eriksonn.aeronautics.index.AeroRegistries;
 import dev.eriksonn.aeronautics.service.AeroLevititeService;
 import foundry.veil.platform.registry.RegistryObject;
@@ -10,16 +8,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-
-import java.util.Optional;
-
-import static dev.eriksonn.aeronautics.index.AeroLevititeBlendPropagationContexts.SOUL_CONTEXT;
-import static dev.eriksonn.aeronautics.index.AeroLevititeBlendPropagationContexts.STANDARD_CONTEXT;
+import org.jetbrains.annotations.Nullable;
 
 public class LevititeBlendHelper {
     public static Fluid getFluid() {
@@ -52,7 +46,7 @@ public class LevititeBlendHelper {
             for (final Direction direction : Direction.values()) {
                 final BlockPos blockpos = pos.relative(direction);
 
-                final CrystalPropagationContext context = getContextFromBlock(level, blockpos);
+                final CrystalPropagationContext context = getContextFromBlock(level, pos, blockpos);
                 if (context != null) {
                     addLevititeBlendTicker(level, pos, true, true, context);
                     break;
@@ -77,27 +71,35 @@ public class LevititeBlendHelper {
         }
     }
 
-    public static CrystalPropagationContext getContextFromBlock(final Level pLevel, final BlockPos pPos) {
-        final BlockState state = pLevel.getBlockState(pPos);
-        CrystalPropagationContext standardContext = STANDARD_CONTEXT.get();
-        CrystalPropagationContext soulContext = SOUL_CONTEXT.get();
-
-        if (state.getBlock() instanceof BlazeBurnerBlock && state.getValue(BlazeBurnerBlock.HEAT_LEVEL).isAtLeast(BlazeBurnerBlock.HeatLevel.SMOULDERING))
-            return standardContext;
-        if (state.getBlock() instanceof LitBlazeBurnerBlock)
-            return state.getValue(LitBlazeBurnerBlock.FLAME_TYPE) == LitBlazeBurnerBlock.FlameType.REGULAR ? standardContext : soulContext;
-
-        final Optional<Boolean> litState = state.getOptionalValue(BlockStateProperties.LIT);
-        if (litState.isPresent() && !litState.get())
-            return null;
-
+    @Nullable
+    public static CrystalPropagationContext getContextFromBlock(final Level level, final BlockPos fluidPos, final BlockPos catalystPos) {
+        final BlockState state = level.getBlockState(catalystPos);
+        CrystalPropagationContext bestContext = null;
+        int bestPriority = Integer.MIN_VALUE;
         for (RegistryObject<CrystalPropagationContext> entry : AeroRegistries.LEVITITE_CRYSTAL_PROPAGATION_CONTEXT.getEntries()) {
-            CrystalPropagationContext context = entry.get();
-            if(state.is(context.getCatalyzerTag())) {
-                return context;
+            final CrystalPropagationContext context = entry.get();
+            if (context.matchesCatalystBlock(level, fluidPos, catalystPos, state) && context.getPriority() > bestPriority) {
+                bestContext = context;
+                bestPriority = context.getPriority();
             }
         }
 
-        return null;
+        return bestContext;
+    }
+
+    @Nullable
+    public static CrystalPropagationContext getContextFromItem(final Level level, final BlockPos fluidPos, final ItemStack catalystItem) {
+        CrystalPropagationContext bestContext = null;
+        int bestPriority = Integer.MIN_VALUE;
+
+        for (final RegistryObject<CrystalPropagationContext> entry : AeroRegistries.LEVITITE_CRYSTAL_PROPAGATION_CONTEXT.getEntries()) {
+            final CrystalPropagationContext context = entry.get();
+            if (context.matchesCatalystItem(level, fluidPos, catalystItem) && context.getPriority() > bestPriority) {
+                bestContext = context;
+                bestPriority = context.getPriority();
+            }
+        }
+
+        return bestContext;
     }
 }

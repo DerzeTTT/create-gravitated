@@ -31,7 +31,6 @@ public class AddonBlocks {
     public static final BlockEntry<AddonGravititeBlock> GRAVITITE =
             REGISTRATE.block("gravitite", AddonGravititeBlock::new)
                     .properties(p -> p.lightLevel($ -> 10))
-                    .properties(BlockBehaviour.Properties::noLootTable)
                     .properties(p -> p.strength(7, 20))
                     .properties(p -> p.sound(new SimLazySoundType(1.0f, 1.0f,
                             AeroSoundEvents.LEVITITE_BREAK::event,
@@ -50,7 +49,6 @@ public class AddonBlocks {
     public static final BlockEntry<AddonStabiliteBlock> STABILITE =
             REGISTRATE.block("stabilite", AddonStabiliteBlock::new)
                     .properties(p -> p.lightLevel($ -> 10))
-                    .properties(BlockBehaviour.Properties::noLootTable)
                     .properties(p -> p.strength(7, 20))
                     .properties(p -> p.sound(new SimLazySoundType(1.0f, 1.0f,
                             AeroSoundEvents.LEVITITE_BREAK::event,

@@ -1,4 +1,16 @@
 {
   "block.aeronautics_addon.gravitite": "Gravitite",
-  "block.aeronautics_addon.stabilite": "Stabilite"
+  "block.aeronautics_addon.stabilite": "Stabilite",
+  "aeronautics_addon.ponder.gravitite.header": "Canceling gravity with Gravitite",
+  "aeronautics_addon.ponder.gravitite.text_1": "One Gravitite cancels gravity for the whole assembled ship.",
+  "aeronautics_addon.ponder.gravitite.text_2": "It holds the hull neutral, so thrust and ballast still decide motion.",
+  "aeronautics_addon.ponder.gravitite.text_3": "Redstone sets strength: 0 turns it off, 15 gives full gravity cancel.",
+  "aeronautics_addon.ponder.gravitite.text_4": "With no signal, the ship starts to fall again.",
+  "aeronautics_addon.ponder.gravitite.text_5": "Power it again to return to zero-gravity flight.",
+  "aeronautics_addon.ponder.stabilite.header": "Leveling ships with Stabilite",
+  "aeronautics_addon.ponder.stabilite.text_1": "Stabilite levels roll and pitch while normal movement still works.",
+  "aeronautics_addon.ponder.stabilite.text_2": "It nudges the ship back toward the horizon instead of freezing yaw.",
+  "aeronautics_addon.ponder.stabilite.text_3": "Redstone sets rigidity: low signal is gentle, and 15 snaps back hard.",
+  "aeronautics_addon.ponder.stabilite.text_4": "Mount a Steering Wheel on top to add yaw control. This ignores Stabilite redstone.",
+  "aeronautics_addon.ponder.stabilite.text_5": "Right-click the wheel, steer with A and D, then press Shift to step away."
 }

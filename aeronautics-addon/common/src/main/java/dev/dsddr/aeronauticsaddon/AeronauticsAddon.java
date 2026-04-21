@@ -7,6 +7,7 @@ import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.dsddr.aeronauticsaddon.events.AddonCommonEvents;
 import dev.dsddr.aeronauticsaddon.index.AddonBlocks;
+import dev.dsddr.aeronauticsaddon.index.AddonLevititeBlendPropagationContexts;
 import dev.eriksonn.aeronautics.Aeronautics;
 import dev.ryanhcode.sable.platform.SableEventPlatform;
 import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
@@ -36,6 +37,7 @@ public class AeronauticsAddon {
 
     public static void init() {
         setTooltips();
+        AddonLevititeBlendPropagationContexts.init();
         AddonBlocks.init();
         listenCommonEvents();
     }
